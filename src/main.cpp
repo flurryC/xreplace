@@ -345,6 +345,6 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    std::cout << "INFO: Overwritten files: " << overwritten_files << "\n";
+    std::cout << "INFO: Overwritten files: " << overwritten_files << std::endl;
     return 0;
 }
