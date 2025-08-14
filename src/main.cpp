@@ -10,7 +10,7 @@ using sv = std::string_view;
 // Version
 constexpr int VERSION_MAJOR = 0;
 constexpr int VERSION_MINOR = 6;
-constexpr int VERSION_PATCH = 9;
+constexpr int VERSION_PATCH = 10;
 
 // Argc
 constexpr int MIN_ARGC = 2;
@@ -105,7 +105,7 @@ void handle_arguments(int argc, char **argv, std::string &source, std::string &d
         }
         else if (arg == "-d" || arg == "--dir")
         {
-            if (i == argc - 1 || argv[i + 1][0] == '-') // If this is the last argument
+            if (i == argc - 1 || argv[i + 1][0] == '-')
                 throw std::runtime_error("--dir requires path");
             source = argv[i + 1];
             flags |= Flags::FROM_DIR;
@@ -114,7 +114,7 @@ void handle_arguments(int argc, char **argv, std::string &source, std::string &d
         }
         else if (arg == "-f" || arg == "--file")
         {
-            if (i == argc - 1 || argv[i + 1][0] == '-') // If this is the last argument
+            if (i == argc - 1 || argv[i + 1][0] == '-')
                 throw std::runtime_error("--file requires file");
             source = argv[i + 1];
             flags |= Flags::FROM_FILE;
@@ -297,7 +297,7 @@ void validate_arguments(sv source, sv dest_dir, sv extension, const uint64_t fla
     }
 
     // Verify that extension is valid
-    if (!extension.at(0))
+    if (extension.at(0) != '.')
     {
         throw std::runtime_error("Extensions should start with a dot. Example: .txt");
     }
